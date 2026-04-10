@@ -9,24 +9,30 @@ import java.time.Instant;
 public class SaludoService {
 
     public SaludoResponse crearSaludo(String nombre) {
-        // SOLUCION RETO (paso 4): se normaliza y valida el nombre antes de responder.
         String nombreNormalizado = normalizarNombre(nombre);
         String mensaje = "Hola, %s. Bienvenido a Spring Boot 3!".formatted(nombreNormalizado);
         return new SaludoResponse(mensaje, Instant.now());
     }
 
+
     String normalizarNombre(String nombre) {
-        if (nombre == null || nombre.isBlank()) {
-            return "Mundo";
+        if (nombre == null) {
+            throw new IllegalArgumentException("El nombre no puede ser null");
         }
 
-        String limpio = nombre.trim();
-        if (limpio.matches(".*\\d.*")) {
-            // SOLUCION RETO: regla de negocio para forzar nombres sin numeros.
-            throw new IllegalArgumentException("El nombre no puede contener numeros");
+        nombre = nombre.trim();
+
+        if (nombre.isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío");
         }
 
-        // SOLUCION RETO: primera letra mayuscula, resto minuscula.
-        return limpio.substring(0, 1).toUpperCase() + limpio.substring(1).toLowerCase();
+        if (nombre.matches(".*\\d.*")) {
+            throw new IllegalArgumentException("El nombre no debe contener números");
+        }
+
+        nombre = nombre.substring(0, 1).toUpperCase() +
+                nombre.substring(1).toLowerCase();
+
+        return "Estudiante " + nombre;
     }
 }

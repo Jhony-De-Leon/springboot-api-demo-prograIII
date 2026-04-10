@@ -223,6 +223,7 @@ Donde:
 
 ---
 
+
 ## Demo adicional: Singleton vs no singleton
 
 Esta comparacion ya esta implementada en el proyecto para demostracion en clase.
@@ -247,6 +248,7 @@ curl http://localhost:8080/api/v1/demo/estado/manual
 La consulta devuelve `0`, porque cada endpoint crea una instancia nueva.
 
 ---
+
 
 ## Checklist final
 
@@ -276,3 +278,4 @@ Como siguiente etapa del curso, este proyecto incorpora un incremento progresivo
   - Exponer 2 APIs con CRUD completo y buenas practicas.
 
 Recomendacion para clase: pueden realizar una demo inicial con H2 para reducir friccion de entorno, y luego completar la entrega final siguiendo los lineamientos de `TareaJpa.md`.
+

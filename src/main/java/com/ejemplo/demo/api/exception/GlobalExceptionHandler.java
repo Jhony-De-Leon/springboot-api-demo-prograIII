@@ -12,8 +12,10 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> manejarValidacion(MethodArgumentNotValidException ex) {
@@ -32,18 +34,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResponse> manejarReglaDeNegocio(IllegalArgumentException ex) {
-        // SOLUCION RETO (paso 5): errores de regla de negocio regresan 400 controlado.
-        ErrorResponse body = new ErrorResponse(
-                "BUSINESS_RULE_ERROR",
-                ex.getMessage(),
-                Instant.now(),
-                Map.of()
-        );
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
-    }
-
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> manejarGenerica(Exception ex) {
         ErrorResponse body = new ErrorResponse(
@@ -54,4 +44,21 @@ public class GlobalExceptionHandler {
         );
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
     }
+
+    /*
+    PASO 5 (EJERCICIO):
+    Descomenta y adapta este manejador cuando agregues validaciones propias
+    en el servicio, por ejemplo IllegalArgumentException.*/
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> manejarReglaDeNegocio(IllegalArgumentException ex) {
+        ErrorResponse body = new ErrorResponse(
+                "BUSINESS_RULE_ERROR",
+                ex.getMessage(),
+                Instant.now(),
+                Map.of()
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
 }

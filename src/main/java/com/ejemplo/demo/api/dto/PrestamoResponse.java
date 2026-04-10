@@ -6,5 +6,4 @@ public record PrestamoResponse(
         BigDecimal cuotaMensual,
         BigDecimal interesTotal,
         BigDecimal totalPagar
-) {
-}
+) {} 
