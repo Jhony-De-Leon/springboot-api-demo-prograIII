@@ -14,7 +14,7 @@ public class SaludoService {
         return new SaludoResponse(mensaje, Instant.now());
     }
 
-
+ 
     String normalizarNombre(String nombre) {
         if (nombre == null) {
             throw new IllegalArgumentException("El nombre no puede ser null");
@@ -31,7 +31,7 @@ public class SaludoService {
         }
 
         nombre = nombre.substring(0, 1).toUpperCase() +
-                nombre.substring(1).toLowerCase();
+                 nombre.substring(1).toLowerCase();
 
         return "Estudiante " + nombre;
     }

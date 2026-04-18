@@ -17,4 +17,3 @@ public record PrestamoRequest(
         @Max(value = 360, message = "Máximo 360 meses")
         int meses
 ) {}
-

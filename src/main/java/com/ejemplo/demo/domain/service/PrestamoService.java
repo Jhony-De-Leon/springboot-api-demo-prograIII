@@ -26,7 +26,7 @@ public class PrestamoService {
         MathContext mc = new MathContext(10);
 
         BigDecimal tasaMensual = tasaAnual.divide(BigDecimal.valueOf(12), mc)
-                .divide(BigDecimal.valueOf(100), mc);
+                                          .divide(BigDecimal.valueOf(100), mc);
 
         BigDecimal unoMasR = BigDecimal.ONE.add(tasaMensual);
         BigDecimal potencia = unoMasR.pow(meses, mc);

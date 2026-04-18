@@ -14,7 +14,7 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-
+        		
                 .info(new Info()
                         .title("API Workshop Spring Boot")
                         .version("1.0")

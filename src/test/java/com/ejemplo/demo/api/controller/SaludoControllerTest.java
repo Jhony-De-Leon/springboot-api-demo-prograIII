@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc; 
 import com.ejemplo.demo.api.exception.GlobalExceptionHandler;
 
 import java.time.Instant;
 
 import org.springframework.context.annotation.Import;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.MockBean; 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(SaludoController.class)
 @Import(GlobalExceptionHandler.class)
-@AutoConfigureMockMvc(addFilters = false)
+@AutoConfigureMockMvc(addFilters = false) 
 
 class SaludoControllerTest {
 
@@ -66,8 +66,8 @@ class SaludoControllerTest {
                 .thenReturn(new SaludoResponse("Hola, Ana. Bienvenido a Spring Boot 3!", Instant.now()));
 
         mockMvc.perform(post("/api/v1/saludos")
-                        .contentType("application/json")
-                        .content(json))
+                .contentType("application/json")
+                .content(json))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.mensaje").exists());
     }
@@ -83,8 +83,8 @@ class SaludoControllerTest {
         """;
 
         mockMvc.perform(post("/api/v1/saludos")
-                        .contentType("application/json")
-                        .content(json))
+                .contentType("application/json")
+                .content(json))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.codigo").value("VALIDATION_ERROR"));
     }

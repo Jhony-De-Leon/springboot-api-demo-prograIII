@@ -1,6 +1,6 @@
 package com.ejemplo.demo.api.controller;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity;  
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,18 +18,18 @@ import io.swagger.v3.oas.annotations.Operation;
 
 import java.util.Map;
 
-@Tag(name = "Saludos")
+@Tag(name = "Saludos") 
 @RestController
 @RequestMapping("/api/v1")
 public class SaludoController {
+	
+	  private final SaludoService saludoService;
 
-    private final SaludoService saludoService;
+	    public SaludoController(SaludoService saludoService) {
+	        this.saludoService = saludoService;
+	    }
 
-    public SaludoController(SaludoService saludoService) {
-        this.saludoService = saludoService;
-    }
-
-
+	    
     @GetMapping
     public ResponseEntity<Map<String, String>> health() {
         return ResponseEntity.ok(Map.of(
@@ -40,19 +40,18 @@ public class SaludoController {
 
     @Operation(summary = "Obtener saludo",
             description = "Retorna un saludo personalizado")
-
+    
     @GetMapping("/saludos")
     public ResponseEntity<SaludoResponse> saludar(
             @RequestParam(defaultValue = "Mundo") String nombre
     ) {
         return ResponseEntity.ok(saludoService.crearSaludo(nombre));
     }
-
-
+    
+    
     @PostMapping("/saludos")
     public ResponseEntity<SaludoResponse> saludarPost(@Valid @RequestBody SaludoRequest request) {
         return ResponseEntity.ok(saludoService.crearSaludo(request.nombre()));
     }
-
+    
 }
-
